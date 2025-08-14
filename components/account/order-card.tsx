@@ -8,7 +8,13 @@ interface Order {
   date: string
   status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled'
   total: number
-  items: number
+  items: Array<{
+    id: number
+    name: string
+    image: string
+    price: number
+    quantity: number
+  }>
 }
 
 interface OrderCardProps {
@@ -63,7 +69,7 @@ export function OrderCard({ order }: OrderCardProps) {
       <CardContent>
         <div className="flex justify-between items-center text-sm text-muted-foreground">
           <span>{order.date}</span>
-          <span>{order.items} productos</span>
+          <span>{order.items.length} productos</span>
         </div>
         <div className="mt-2 text-lg font-semibold">
           ${order.total.toLocaleString('es-AR')} ARS
